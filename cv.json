@@ -1,0 +1,165 @@
+{
+	"basics": {
+		"name": "Marco Torres Walker",
+		"label": "Diseñador y desarrollador WordPress",
+		"image": "./mtw.webp",
+		"email": "mtwphoto@gmail.com",
+		"phone": "+34 658 071 639",
+		"url": "https://marcotorreswalker.com",
+		"summary": "Profesional versátil con una sólida base en medios de comunicación y artes visuales, reconvertido al desarrollo web WordPress. Combino una perspectiva única en diseño y contenido con habilidades técnicas en maquetación, desarrollo frontend, diseño UI/UX y personalización con código (PHP, HTML, CSS, JS). Profesional proactivo y autodidacta, preparado para aportar valor en equipos que requieran habilidades técnicas y una perspectiva amplia del entorno digital.",
+		"location": {
+			"address": "",
+			"postalCode": "07800",
+			"city": "Ibiza",
+			"countryCode": "ES",
+			"region": "España"
+		},
+		"profiles": [
+			{
+				"network": "LinkedIn",
+				"username": "marcotorreswalker",
+				"url": "https://www.linkedin.com/in/marcotorreswalker/"
+			},
+			{
+				"network": "GitHub",
+				"username": "GWKaplan",
+				"url": "https://github.com/GWKaplan"
+			}
+		]
+	},
+	"work": [
+		{
+			"name": "Estrategia Web",
+			"position": "Desarrollador WordPress freelance",
+			"url": "https://estrategiaweb.es/",
+			"startDate": "2023-07-01",
+			"endDate": null,
+			"summary": "Experiencia en la creación de soluciones a medida (HTML, CSS, Javascript) para funcionalidades complejas como sliders dinámicos, sistemas de búsqueda/filtrado y estilos de bloque personalizados en Gutenberg, priorizando el rendimiento sobre el uso excesivo de plugins.",
+			"highlights": [""]
+		},
+		{
+			"name": "Freelance",
+			"position": "Diseñador WordPress freelance",
+			"url": "https://marcotorreswalker.com",
+			"startDate": "2020-07-01",
+			"endDate": null,
+			"summary": "Diseño de páginas web con WordPress enfocado al rendimiento y la personalización.",
+			"highlights": [""]
+		}
+	],
+	"volunteer": [
+		{
+			"organization": "Organization",
+			"position": "Volunteer",
+			"url": "https://organization.com/",
+			"startDate": "2012-01-01",
+			"endDate": "2013-01-01",
+			"summary": "Description…",
+			"highlights": ["Awarded 'Volunteer of the Month'"]
+		}
+	],
+	"education": [
+		{
+			"institution": "University",
+			"url": "https://institution.com/",
+			"area": "Software Development",
+			"studyType": "Bachelor",
+			"startDate": "2011-01-01",
+			"endDate": "2013-01-01",
+			"score": "4.0",
+			"courses": ["DB1101 - Basic SQL"]
+		}
+	],
+	"awards": [
+		{
+			"title": "Award",
+			"date": "2014-11-01",
+			"awarder": "Company",
+			"summary": "There is no spoon."
+		}
+	],
+	"certificates": [
+		{
+			"name": "Certificate",
+			"date": "2021-11-07",
+			"issuer": "Company",
+			"url": "https://certificate.com"
+		}
+	],
+	"publications": [
+		{
+			"name": "Publication",
+			"publisher": "Company",
+			"releaseDate": "2014-10-01",
+			"url": "https://publication.com",
+			"summary": "Description…"
+		}
+	],
+	"skills": [
+		{
+			"name": "Desarrollo WordPress",
+			"level": "Medio",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "HTML",
+			"level": "Alto",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "JavaScript",
+			"level": "Medio-Alto",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "CSS",
+			"level": "Alto",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "PHP",
+			"level": "Medio",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "Git",
+			"level": "Básico",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		},
+		{
+			"name": "Astro",
+			"level": "Básico-Medio",
+			"keywords": ["HTML", "CSS", "JavaScript"]
+		}
+
+	],
+	"languages": [
+		{
+			"language": "English",
+			"fluency": "Native speaker"
+		}
+	],
+	"interests": [
+		{
+			"name": "Wildlife",
+			"keywords": ["Ferrets", "Unicorns"]
+		}
+	],
+	"references": [
+		{
+			"name": "Jane Doe",
+			"reference": "Reference…"
+		}
+	],
+	"projects": [
+		{
+			"name": "Project",
+			"startDate": "2019-01-01",
+			"endDate": "2021-01-01",
+			"description": "Description...",
+			"highlights": ["Won award at AIHacks 2016"],
+			"url": "https://project.com/",
+			"isActive": true
+		}
+	]
+}
