@@ -6,6 +6,74 @@
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
 		<title>{Astro.props.title}</title>
+
+		<script>
+			// Function to check if dark mode is enabled
+			function checkIsDarkMode() {
+				return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			}
+
+			// Function to update the theme based on the user's preference
+			function updateTheme() {
+				if (checkIsDarkMode()) {
+					console.log('dark');
+
+					const storedColorTheme = localStorage.getItem('color-theme');
+					const darkModeElem = document.querySelector('.dark-mode');
+					const lightModeElem = document.querySelector('.light-mode');
+
+					if (!storedColorTheme) {
+						document.querySelector('html')?.classList.add('dark');
+						document.querySelector('ninja-keys')?.classList.add('dark');
+						if (darkModeElem) {
+							darkModeElem.style.display = 'none';
+						}
+
+						localStorage.setItem('color-theme', 'dark');
+					}
+
+					if (storedColorTheme === 'dark') {
+						if (darkModeElem) darkModeElem.style.display = 'none';
+						if (lightModeElem) lightModeElem.style.display = 'block';
+						document.querySelector('html')?.classList.add('dark');
+						document.querySelector('ninja-keys')?.classList.add('dark');
+					} else {
+						if (lightModeElem) lightModeElem.style.display = 'none';
+						if (darkModeElem) darkModeElem.style.display = 'block';
+					}
+
+					// document.documentElement.setAttribute('data-theme', 'dark');
+				} else {
+					const lightModeElem = document.querySelector('.light-mode');
+					if (lightModeElem) {
+						console.log('Remove light');
+						lightModeElem.style.display = 'none';
+						localStorage.setItem('color-theme', 'light');
+					}
+					// document.documentElement.setAttribute('data-theme', 'light');
+				}
+			}
+
+			// Initial theme setup
+			updateTheme();
+
+			document.querySelector('.dark-mode')?.addEventListener('click', () => {
+				localStorage.setItem('color-theme', 'dark');
+				document.querySelector('html')?.classList.add('dark');
+				document.querySelector('ninja-keys')?.classList.add('dark');
+				updateTheme();
+			});
+
+			document.querySelector('.light-mode')?.addEventListener('click', () => {
+				localStorage.setItem('color-theme', 'light');
+				document.querySelector('html')?.classList.remove('dark');
+				document.querySelector('ninja-keys')?.classList.remove('dark');
+				updateTheme();
+			});
+
+			// Listen for changes in the color scheme preference
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+		</script>
 	</head>
 	<body>
 		<slot />
@@ -19,8 +87,31 @@
 			Monaco,
 			Lucida Console,
 			monospace;
-		background: #fff;
+		/* background: #fff; */
 		letter-spacing: -0.025rem;
+		color-scheme: light;
+	}
+
+	html.dark {
+		color-scheme: dark;
+	}
+
+	html.dark {
+		--text-color: #ddd;
+		--h2-color: #999;
+		--span-color: #888;
+		--avatar-color: #eee;
+
+		--link-color: #bbb;
+		--border-color: #666;
+
+		--date-color: #999;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		p {
+			color: var(--text-color);
+		}
 	}
 
 	body,
@@ -66,10 +157,11 @@
 	}
 
 	p {
-		color: #666;
+		/* color: #666; */
 		font-size: 0.9rem;
 		line-height: 1.5;
 		margin: 0;
 		text-wrap: pretty;
+		white-space: pre-line;
 	}
 </style>

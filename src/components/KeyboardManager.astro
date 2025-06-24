@@ -1,4 +1,5 @@
 ---
+import CommandButton from '@/icons/CommandButton.astro';
 import { basics } from '@cv';
 
 const { profiles } = basics;
@@ -43,7 +44,10 @@ const profilesInfo = profiles.map(({ network, url }) => {
 ---
 
 <footer class='no-print'>
-	Pulsa <kbd>Ctrl</kbd> + <kbd>K</kbd> para brir la paleta de comandos.
+	<div>Pulsa <kbd>Ctrl</kbd> + <kbd>K</kbd> para abrir la paleta de comandos.</div>
+	<button class='paletteToggle'>
+		<CommandButton />
+	</button>
 </footer>
 <ninja-keys
 	data-info={JSON.stringify(profilesInfo)}
@@ -117,6 +121,45 @@ const profilesInfo = profiles.map(({ network, url }) => {
 		animation: linear 0.3s fadeIn;
 		animation-timeline: --revealing;
 		animation-range: entry 100% cover 10%;
+
+		@media (width < 992px) {
+			border: none;
+			padding: 0;
+			display: block;
+			text-align: right;
+			animation: none;
+
+			& > div {
+				display: none;
+			}
+		}
+
+		button.paletteToggle {
+			display: none;
+
+			border: none;
+			cursor: pointer;
+			color: inherit;
+			padding: 0.5rem;
+			position: relative;
+			border-radius: 100vw;
+
+			@media (width < 992px) {
+				display: inline-flex;
+			}
+			right: 40px;
+			bottom: 40px;
+
+			&:hover {
+				color: var(--primary-color);
+			}
+		}
+	}
+
+	html.dark {
+		footer {
+			background: #121212;
+		}
 	}
 
 	@media print {
@@ -126,3 +169,15 @@ const profilesInfo = profiles.map(({ network, url }) => {
 		}
 	}
 </style>
+
+<script>
+	const paletteToggle = document.querySelector('.paletteToggle');
+	if (paletteToggle) {
+		paletteToggle.addEventListener('click', () => {
+			const ninja = document.querySelector('ninja-keys');
+			if (ninja) {
+				ninja.open();
+			}
+		});
+	}
+</script>

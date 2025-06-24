@@ -11,5 +11,13 @@
   "dependencies": {
     "astro": "^5.8.0",
     "ninja-keys": "^1.2.2"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "sharp"
+    ],
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
   }
 }

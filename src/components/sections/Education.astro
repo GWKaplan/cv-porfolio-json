@@ -1,5 +1,81 @@
 ---
 import Section from '../Section.astro';
+
+import { education } from '@cv';
 ---
 
-<Section title='Educación' />
+<Section title='Educación'>
+	<ul class='list'>
+		{
+			education.map(({ institution, startDate, endDate, courses }) => {
+				const startYear = new Date(startDate).getFullYear();
+				const endYear = endDate ? new Date(endDate).getFullYear() : 'En curso';
+
+				return (
+					<li class='list-item'>
+						<article>
+							<header>
+								<div>
+									<h3>{institution}</h3>
+									<h4 class='position'>{courses}</h4>
+								</div>
+								<time class='date'>
+									{startYear} - {endYear}
+								</time>
+							</header>
+						</article>
+					</li>
+				);
+			})
+		}
+	</ul>
+</Section>
+
+<style>
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	header {
+		display: flex;
+		justify-content: space-between;
+		align-items: start;
+        margin-bottom: 8px;
+	}
+    h3 {
+        color: #111;
+        font-weight: 500;
+    }
+    h4 {
+        color #222;
+        font-weight: 400;
+    }
+    time.date {
+        color: #777;
+        font-size: 0.875rem;
+    }
+
+	@media (prefers-color-scheme: dark) {
+		p {
+			color: var(--text-color);
+		}
+
+		h2 {
+			color: #999;
+		}
+
+		span {
+			color: #888;
+		}
+
+		time.date {
+			color: var(--date-color);
+		}
+
+		footer a {
+			color: #bbb;
+			border-color: #aaa;
+		}
+	}
+</style>

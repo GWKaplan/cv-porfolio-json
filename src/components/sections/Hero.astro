@@ -1,6 +1,8 @@
 ---
 import Section from '@/components/Section.astro';
+import Dark from '@/icons/Dark.astro';
 import GitHub from '@/icons/GitHub.astro';
+import Light from '@/icons/Light.astro';
 import LinkedIn from '@/icons/LinkedIn.astro';
 import Mail from '@/icons/Mail.astro';
 import Phone from '@/icons/Phone.astro';
@@ -19,6 +21,9 @@ const linkedInfo = profiles.find(({ network }) => network === 'LinkedIn');
 const githubInfo = profiles.find(({ network }) => network === 'GitHub');
 const linkedUrl = linkedInfo?.url;
 const printInfo = [email, phone, linkedUrl].filter(Boolean).join(' • ');
+
+const props = Astro.props;
+console.log('props: ', props.initialMode);
 ---
 
 <Section>
@@ -81,6 +86,11 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(' • ');
 			</footer>
 		</div>
 		<div class='avatar'>
+			<div class='light-dark-toggle'>
+				<Light class='light-mode' ' />
+				<Dark class='dark-mode' ' />
+			</div>
+			<div class='print'></div>
 			<img src={image} alt={`Foto de perfil de ${name}`} width='200' height='auto' />
 		</div>
 	</div>
@@ -89,7 +99,7 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(' • ');
 <style>
 	.container {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		justify-content: space-between;
 		gap: 24px;
 	}
@@ -151,11 +161,62 @@ const printInfo = [email, phone, linkedUrl].filter(Boolean).join(' • ');
 		}
 	}
 
+	.avatar {
+		display: flex;
+		gap: 12px;
+		color: #444;
+
+		svg {
+			cursor: pointer;
+		}
+	}
+
 	.print {
 		display: none;
 		font-size: 0.75rem;
 		color: #666;
 		line-height: 1.3;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		p {
+			color: var(--text-color);
+		}
+
+		h2 {
+			color: var(--h2-color);
+		}
+
+		span {
+			color: var(--span-color);
+		}
+
+		.avatar {
+			color: var(--avatar-color);
+
+			img {
+				border: 1px solid #333;
+			}
+		}
+
+		footer a {
+			color: var(--link-color);
+			border-color: var(--border-color);
+		}
+	}
+
+	@media (width < 680px) {
+		.container {
+			flex-direction: column;
+		}
+
+		.avatar {
+			order: -1;
+		}
+
+		.avatar .light-dark-toggle {
+			order: 1;
+		}
 	}
 
 	@media print {

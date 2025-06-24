@@ -19,6 +19,11 @@
 				"network": "LinkedIn",
 				"username": "marcotorreswalker",
 				"url": "https://www.linkedin.com/in/marcotorreswalker/"
+			},
+			{
+				"network": "GitHub",
+				"username": "GWKaplan",
+				"url": "https://github.com/GWKaplan"
 			}
 		]
 	},
@@ -29,52 +34,16 @@
 			"url": "https://estrategiaweb.es/",
 			"startDate": "2023-07-01",
 			"endDate": null,
-			"summary": "Desarrollo Frontend y Personalización Avanzada con WordPress (Freelance). \n Colaboro con la agencia Estrategia Web para construir sitios web WordPress a medida, traduciendo diseños complejos en soluciones digitales robustas y funcionales. Mi enfoque se centra en la optimización del rendimiento mediante el uso estratégico de temas de bloques, Gutenberg y una mínima dependencia de plugins. \n\n Habilidades Clave y Logros: \n -Implementación de funcionalidades y diseños personalizados con PHP, HTML, SCSS y JavaScript para satisfacer requisitos específicos del cliente. \n\n -Creación y aplicación de estilos y variaciones personalizadas para bloques de Gutenberg, mejorando la flexibilidad y la consistencia del diseño. \n\n -Desarrollo de Custom Post Types y Custom Fields complejos, vinculados directamente a bloques de Gutenberg y gestionables desde el editor para una administración intuitiva del contenido. \n\n -Enfoque en la experiencia de usuario (UX) en el frontend y en la facilidad de gestión (backend), asegurando soluciones eficientes y mantenibles.",
+			"summary": "Experiencia en la creación de soluciones a medida (HTML, CSS, Javascript) para funcionalidades complejas como sliders dinámicos, sistemas de búsqueda/filtrado y estilos de bloque personalizados en Gutenberg, priorizando el rendimiento sobre el uso excesivo de plugins.",
 			"highlights": [""]
 		},
 		{
 			"name": "Freelance",
 			"position": "Diseñador WordPress freelance",
 			"url": "https://marcotorreswalker.com",
-			"startDate": "2014-06-01",
+			"startDate": "2020-07-01",
 			"endDate": null,
 			"summary": "Diseño de páginas web con WordPress enfocado al rendimiento y la personalización.",
-			"highlights": [""]
-		},
-		{
-			"name": "Diario de Ibiza",
-			"position": "Periodista",
-			"url": "https://www.diariodeibiza.es/",
-			"startDate": "2018-09-01",
-			"endDate": "2020-12-15",
-			"summary": "Redacción, edición y seguimiento de noticias, reportajes, entrevistas y crónicas.",
-			"highlights": [""]
-		},
-		{
-			"name": "Diario de Ibiza",
-			"position": "Diseño, edición y producción de preimpresión",
-			"url": "https://www.diariodeibiza.es/",
-			"startDate": "2016-11-01",
-			"endDate": "2017-11-01",
-			"summary": "Diseño, edición y comprobación de artes finales para impresión.",
-			"highlights": [""]
-		},
-		{
-			"name": "Freelance",
-			"position": "Diseñador gráfico, editorial y web",
-			"url": "",
-			"startDate": "2013-06-01",
-			"endDate": "2016-03-01",
-			"summary": "Diseño freelance en colaboración con agencia de diseño y creación audiovisual.",
-			"highlights": [""]
-		},
-		{
-			"name": "Ultima Hora",
-			"position": "Redactor y fotógrafo de prensa",
-			"url": "https://www.ultimahora.es/",
-			"startDate": "1997-12-01",
-			"endDate": "2012-05-01",
-			"summary": "",
 			"highlights": [""]
 		}
 	],
@@ -91,24 +60,14 @@
 	],
 	"education": [
 		{
-			"institution": "UOC (Universitat Oberta de Catalunya)",
-			"url": "",
-			"area": "Diseño y comnicación",
-			"studyType": "Grado",
-			"startDate": "2024-10-01",
-			"endDate": "",
+			"institution": "University",
+			"url": "https://institution.com/",
+			"area": "Software Development",
+			"studyType": "Bachelor",
+			"startDate": "2011-01-01",
+			"endDate": "2013-01-01",
 			"score": "4.0",
-			"courses": "Grado en Diseño y Creación Digitales"
-		},
-		{
-			"institution": "IES Sa Blanca Dona",
-			"url": "",
-			"area": "Secundaria",
-			"studyType": "Secundaria",
-			"startDate": "1985-09-01",
-			"endDate": "1990-06-01",
-			"score": "4.0",
-			"courses": "BUP, COU y Selectividad"
+			"courses": ["DB1101 - Basic SQL"]
 		}
 	],
 	"awards": [
@@ -158,11 +117,6 @@
 			"keywords": ["HTML", "CSS", "JavaScript"]
 		},
 		{
-			"name": "SCSS",
-			"level": "Alto",
-			"keywords": ["HTML", "CSS", "JavaScript"]
-		},
-		{
 			"name": "PHP",
 			"level": "Medio",
 			"keywords": ["HTML", "CSS", "JavaScript"]
@@ -199,13 +153,13 @@
 	],
 	"projects": [
 		{
-			"name": "Web corporativa Inmobiliaria Palau",
-			"startDate": "",
-			"endDate": "2024-01-01",
-			"description": "Desarrollo a medida con WordPress, Gutenberg y código personalizado, para funcionalidad de búsqueda y filtrado de propiedades.",
-			"highlights": [],
-			"url": "https://inmobiliariapalau.com/",
-			"isActive": false
+			"name": "Project",
+			"startDate": "2019-01-01",
+			"endDate": "2021-01-01",
+			"description": "Description...",
+			"highlights": ["Won award at AIHacks 2016"],
+			"url": "https://project.com/",
+			"isActive": true
 		}
 	]
 }
