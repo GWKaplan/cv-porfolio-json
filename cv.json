@@ -206,6 +206,15 @@
 			"highlights": [],
 			"url": "https://inmobiliariapalau.com/",
 			"isActive": false
+		},
+		{
+			"name": "Web Inmobiliaria Innova Menorca",
+			"startDate": "",
+			"endDate": "2025-01-01",
+			"description": "Desarrollo a medida con WordPress. Variaciones de estilo de bloques y variaciones de bloques vinculados a meta personalizada.",
+			"highlights": [],
+			"url": "https://innovamenorca.com/",
+			"isActive": false
 		}
 	]
 }
