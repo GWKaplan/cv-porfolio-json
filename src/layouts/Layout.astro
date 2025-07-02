@@ -8,60 +8,61 @@
 		<title>{Astro.props.title}</title>
 
 		<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const htmlElement = document.documentElement;
-    const ninjaKeysElement = document.querySelector('ninja-keys');
-    const darkModeButton = document.querySelector('.dark-mode');
-    const lightModeButton = document.querySelector('.light-mode');
+			document.addEventListener('DOMContentLoaded', () => {
+				const htmlElement = document.documentElement;
+				const ninjaKeysElement = document.querySelector('ninja-keys');
+				const darkModeButton = document.querySelector('.dark-mode');
+				const lightModeButton = document.querySelector('.light-mode');
 
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        htmlElement.classList.add('dark');
-        if (ninjaKeysElement) {
-          ninjaKeysElement.classList.add('dark');
-        }
-        if (darkModeButton) darkModeButton.style.display = 'none';
-        if (lightModeButton) lightModeButton.style.display = 'block';
-      } else {
-        htmlElement.classList.remove('dark');
-        if (ninjaKeysElement) {
-          ninjaKeysElement.classList.remove('dark');
-        }
-        if (lightModeButton) lightModeButton.style.display = 'none';
-        if (darkModeButton) darkModeButton.style.display = 'block';
-      }
-      localStorage.setItem('color-theme', theme);
-    }
+				function applyTheme(theme) {
+					if (theme === 'dark') {
+						htmlElement.classList.add('dark');
+						if (ninjaKeysElement) {
+							ninjaKeysElement.classList.add('dark');
+						}
+						if (darkModeButton) darkModeButton.style.display = 'none';
+						if (lightModeButton) lightModeButton.style.display = 'block';
+					} else {
+						htmlElement.classList.remove('dark');
+						if (ninjaKeysElement) {
+							ninjaKeysElement.classList.remove('dark');
+						}
+						if (lightModeButton) lightModeButton.style.display = 'none';
+						if (darkModeButton) darkModeButton.style.display = 'block';
+					}
+					localStorage.setItem('color-theme', theme);
+				}
 
-    function initializeTheme() {
-      const storedTheme = localStorage.getItem('color-theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+				function initializeTheme() {
+					const storedTheme = localStorage.getItem('color-theme');
+					const prefersDark =
+						window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-      if (storedTheme) {
-        applyTheme(storedTheme);
-      } else {
-        applyTheme(prefersDark ? 'dark' : 'light');
-      }
-    }
+					if (storedTheme) {
+						applyTheme(storedTheme);
+					} else {
+						applyTheme(prefersDark ? 'dark' : 'light');
+					}
+				}
 
-    if (darkModeButton) {
-      darkModeButton.addEventListener('click', () => applyTheme('dark'));
-    }
-    if (lightModeButton) {
-      lightModeButton.addEventListener('click', () => applyTheme('light'));
-    }
+				if (darkModeButton) {
+					darkModeButton.addEventListener('click', () => applyTheme('dark'));
+				}
+				if (lightModeButton) {
+					lightModeButton.addEventListener('click', () => applyTheme('light'));
+				}
 
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-      // Only change theme if no theme is stored in localStorage
-      // This prevents overriding a user's explicit theme choice
-      if (!localStorage.getItem('color-theme')) {
-        applyTheme(e.matches ? 'dark' : 'light');
-      }
-    });
+				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+					// Only change theme if no theme is stored in localStorage
+					// This prevents overriding a user's explicit theme choice
+					if (!localStorage.getItem('color-theme')) {
+						applyTheme(e.matches ? 'dark' : 'light');
+					}
+				});
 
-    initializeTheme();
-  });
-</script>
+				initializeTheme();
+			});
+		</script>
 	</head>
 	<body>
 		<slot />
@@ -97,8 +98,14 @@
 	}
 
 	@media (prefers-color-scheme: dark) {
-		p {
-			color: var(--text-color);
+		p,
+		h3,
+		h3 > a {
+			color: var(--text-color) !important;
+		}
+
+		h4 {
+			color: var(--link-color) !important;
 		}
 	}
 
