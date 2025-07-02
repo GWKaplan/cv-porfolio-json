@@ -8,72 +8,60 @@
 		<title>{Astro.props.title}</title>
 
 		<script>
-			// Function to check if dark mode is enabled
-			function checkIsDarkMode() {
-				return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-			}
+  document.addEventListener('DOMContentLoaded', () => {
+    const htmlElement = document.documentElement;
+    const ninjaKeysElement = document.querySelector('ninja-keys');
+    const darkModeButton = document.querySelector('.dark-mode');
+    const lightModeButton = document.querySelector('.light-mode');
 
-			// Function to update the theme based on the user's preference
-			function updateTheme() {
-				if (checkIsDarkMode()) {
-					console.log('dark');
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        htmlElement.classList.add('dark');
+        if (ninjaKeysElement) {
+          ninjaKeysElement.classList.add('dark');
+        }
+        if (darkModeButton) darkModeButton.style.display = 'none';
+        if (lightModeButton) lightModeButton.style.display = 'block';
+      } else {
+        htmlElement.classList.remove('dark');
+        if (ninjaKeysElement) {
+          ninjaKeysElement.classList.remove('dark');
+        }
+        if (lightModeButton) lightModeButton.style.display = 'none';
+        if (darkModeButton) darkModeButton.style.display = 'block';
+      }
+      localStorage.setItem('color-theme', theme);
+    }
 
-					const storedColorTheme = localStorage.getItem('color-theme');
-					const darkModeElem = document.querySelector('.dark-mode');
-					const lightModeElem = document.querySelector('.light-mode');
+    function initializeTheme() {
+      const storedTheme = localStorage.getItem('color-theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-					if (!storedColorTheme) {
-						document.querySelector('html')?.classList.add('dark');
-						document.querySelector('ninja-keys')?.classList.add('dark');
-						if (darkModeElem) {
-							darkModeElem.style.display = 'none';
-						}
+      if (storedTheme) {
+        applyTheme(storedTheme);
+      } else {
+        applyTheme(prefersDark ? 'dark' : 'light');
+      }
+    }
 
-						localStorage.setItem('color-theme', 'dark');
-					}
+    if (darkModeButton) {
+      darkModeButton.addEventListener('click', () => applyTheme('dark'));
+    }
+    if (lightModeButton) {
+      lightModeButton.addEventListener('click', () => applyTheme('light'));
+    }
 
-					if (storedColorTheme === 'dark') {
-						if (darkModeElem) darkModeElem.style.display = 'none';
-						if (lightModeElem) lightModeElem.style.display = 'block';
-						document.querySelector('html')?.classList.add('dark');
-						document.querySelector('ninja-keys')?.classList.add('dark');
-					} else {
-						if (lightModeElem) lightModeElem.style.display = 'none';
-						if (darkModeElem) darkModeElem.style.display = 'block';
-					}
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      // Only change theme if no theme is stored in localStorage
+      // This prevents overriding a user's explicit theme choice
+      if (!localStorage.getItem('color-theme')) {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
 
-					// document.documentElement.setAttribute('data-theme', 'dark');
-				} else {
-					const lightModeElem = document.querySelector('.light-mode');
-					if (lightModeElem) {
-						console.log('Remove light');
-						lightModeElem.style.display = 'none';
-						localStorage.setItem('color-theme', 'light');
-					}
-					// document.documentElement.setAttribute('data-theme', 'light');
-				}
-			}
-
-			// Initial theme setup
-			updateTheme();
-
-			document.querySelector('.dark-mode')?.addEventListener('click', () => {
-				localStorage.setItem('color-theme', 'dark');
-				document.querySelector('html')?.classList.add('dark');
-				document.querySelector('ninja-keys')?.classList.add('dark');
-				updateTheme();
-			});
-
-			document.querySelector('.light-mode')?.addEventListener('click', () => {
-				localStorage.setItem('color-theme', 'light');
-				document.querySelector('html')?.classList.remove('dark');
-				document.querySelector('ninja-keys')?.classList.remove('dark');
-				updateTheme();
-			});
-
-			// Listen for changes in the color scheme preference
-			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-		</script>
+    initializeTheme();
+  });
+</script>
 	</head>
 	<body>
 		<slot />
