@@ -76,8 +76,8 @@ const props = Astro.props;
 				class='light-dark-toggle'
 				aria-label='Cambiar entre modo claro y oscuro'
 			>
-				<Light class='light-mode' />
-				<Dark class='dark-mode' />
+				<Light class='light-mode' aria-hidden='true' />
+				<Dark class='dark-mode' aria-hidden='true' />
 			</button>
 			<div class='print'></div>
 			<img src={image} alt={`Foto de perfil de ${name}`} width='128' height='128' />
