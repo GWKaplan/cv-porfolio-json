@@ -50,19 +50,6 @@ const props = Astro.props;
 						</a>
 					)
 				}
-				<!-- {
-					phone && (
-						<a
-							href={`tel:${phone}`}
-							class='phone'
-							title={`Llamar a ${name} al teléfono ${phone}`}
-							target='_blank'
-							rel='noopener noreferrer'
-						>
-							<Phone />
-						</a>
-					)
-				} -->
 				{
 					profiles.map(({ network, username, url }) => {
 						const Icon = SOCIAL_ICONS[network];
