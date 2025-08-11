@@ -42,7 +42,7 @@ const props = Astro.props;
 						<a
 							href={`mailto:${email}`}
 							class='email'
-							title={`Enviar un correo electrónico a ${name} al correo ${email}`}
+							aria-label={`Enviar un correo electrónico a ${name} al correo ${email}`}
 							target='_blank'
 							rel='noopener noreferrer'
 						>
@@ -59,7 +59,7 @@ const props = Astro.props;
 							<a
 								href={url}
 								class={network.toLowerCase()}
-								title={`Visitar perfil de ${name} en ${network}`}
+								aria-label={`Visitar perfil de ${name} en ${network}`}
 								target='_blank'
 								rel='noopener noreferrer'
 							>
@@ -71,12 +71,16 @@ const props = Astro.props;
 			</footer>
 		</div>
 		<div class='avatar'>
-			<div class='light-dark-toggle'>
-				<Light class='light-mode' ' />
-				<Dark class='dark-mode' ' />
-			</div>
+			<button
+				id='theme-toggle-btn'
+				class='light-dark-toggle'
+				aria-label='Cambiar entre modo claro y oscuro'
+			>
+				<Light class='light-mode' />
+				<Dark class='dark-mode' />
+			</button>
 			<div class='print'></div>
-			<img src={image} alt={`Foto de perfil de ${name}`} width='200' height='auto' />
+			<img src={image} alt={`Foto de perfil de ${name}`} width='128' height='128' />
 		</div>
 	</div>
 </Section>
@@ -154,6 +158,13 @@ const props = Astro.props;
 		svg {
 			cursor: pointer;
 		}
+	}
+
+	.light-dark-toggle {
+		background: none;
+		border: none;
+		padding: 0;
+		cursor: pointer;
 	}
 
 	.print {

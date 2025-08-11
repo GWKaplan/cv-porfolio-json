@@ -1,3 +1,14 @@
+---
+import { basics } from '@cv';
+const { name, label, summary, image, url, email, phone, location, profiles } = basics;
+
+const { title: pageTitle } = Astro.props;
+const siteTitle = name;
+const description = summary;
+const ogImage = new URL(image, Astro.url.origin).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? url).href;
+---
+
 <!doctype html>
 <html lang='es'>
 	<head>
@@ -5,67 +16,100 @@
 		<meta name='viewport' content='width=device-width' />
 		<link rel='icon' type='image/svg+xml' href='/favicon.svg' />
 		<meta name='generator' content={Astro.generator} />
-		<title>{Astro.props.title}</title>
 
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				const htmlElement = document.documentElement;
-				const ninjaKeysElement = document.querySelector('ninja-keys');
-				const darkModeButton = document.querySelector('.dark-mode');
-				const lightModeButton = document.querySelector('.light-mode');
+		<!-- SEO -->
+		<title>{pageTitle}</title>
+		<meta name='description' content={description} />
+		<meta name='author' content={name} />
+		<link rel='canonical' href={canonicalURL} />
 
-				function applyTheme(theme) {
-					if (theme === 'dark') {
-						htmlElement.classList.add('dark');
-						if (ninjaKeysElement) {
-							ninjaKeysElement.classList.add('dark');
-						}
-						if (darkModeButton) darkModeButton.style.display = 'none';
-						if (lightModeButton) lightModeButton.style.display = 'block';
-					} else {
-						htmlElement.classList.remove('dark');
-						if (ninjaKeysElement) {
-							ninjaKeysElement.classList.remove('dark');
-						}
-						if (lightModeButton) lightModeButton.style.display = 'none';
-						if (darkModeButton) darkModeButton.style.display = 'block';
-					}
-					localStorage.setItem('color-theme', theme);
+		<!-- Open Graph / Facebook -->
+		<meta property='og:type' content='website' />
+		<meta property='og:url' content={url} />
+		<meta property='og:title' content={siteTitle} />
+		<meta property='og:description' content={description} />
+		<meta property='og:image' content={ogImage} />
+
+		<!-- Twitter -->
+		<meta property='twitter:card' content='summary_large_image' />
+		<meta property='twitter:url' content={url} />
+		<meta property='twitter:title' content={siteTitle} />
+		<meta property='twitter:description' content={description} />
+		<meta property='twitter:image' content={ogImage} />
+
+		<!-- Datos Estructurados (JSON-LD) -->
+		<script
+			type='application/ld+json'
+			set:html={JSON.stringify({
+				'@context': 'https://schema.org',
+				'@type': 'Person',
+				name: name,
+				jobTitle: label,
+				url: url,
+				image: image,
+				sameAs: profiles.map((profile) => profile.url),
+				email: `mailto:${email}`,
+				telephone: phone,
+				address: {
+					'@type': 'PostalAddress',
+					addressLocality: location.city,
+					addressRegion: location.region,
+					postalCode: location.postalCode,
+					addressCountry: location.countryCode,
+				},
+			})}
+		/>
+
+		<!-- Script para evitar FOUC (Flash of Unstyled Content) del tema -->
+		<script is:inline>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('color-theme')) {
+					return localStorage.getItem('color-theme');
 				}
-
-				function initializeTheme() {
-					const storedTheme = localStorage.getItem('color-theme');
-					const prefersDark =
-						window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-					if (storedTheme) {
-						applyTheme(storedTheme);
-					} else {
-						applyTheme(prefersDark ? 'dark' : 'light');
-					}
+				if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+					return 'dark';
 				}
+				return 'light';
+			})();
 
-				if (darkModeButton) {
-					darkModeButton.addEventListener('click', () => applyTheme('dark'));
-				}
-				if (lightModeButton) {
-					lightModeButton.addEventListener('click', () => applyTheme('light'));
-				}
-
-				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-					// Only change theme if no theme is stored in localStorage
-					// This prevents overriding a user's explicit theme choice
-					if (!localStorage.getItem('color-theme')) {
-						applyTheme(e.matches ? 'dark' : 'light');
-					}
-				});
-
-				initializeTheme();
-			});
+			if (theme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
 		</script>
 	</head>
 	<body>
 		<slot />
+		<!-- Script para la interactividad del cambio de tema -->
+		<script>
+			const themeToggle = document.querySelector('#theme-toggle-btn');
+			const ninjaKeys = document.querySelector('ninja-keys');
+
+			const handleToggle = () => {
+				const isDark = document.documentElement.classList.toggle('dark');
+				localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+
+				if (ninjaKeys) {
+					ninjaKeys.classList.toggle('dark', isDark);
+				}
+			};
+
+			if (themeToggle) {
+				themeToggle.addEventListener('click', handleToggle);
+			}
+
+			// Sincronizar con cambios del sistema operativo si no hay preferencia guardada
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+				if (!localStorage.getItem('color-theme')) {
+					const isDark = e.matches;
+					document.documentElement.classList.toggle('dark', isDark);
+					if (ninjaKeys) {
+						ninjaKeys.classList.toggle('dark', isDark);
+					}
+				}
+			});
+		</script>
 	</body>
 </html>
 
@@ -95,6 +139,17 @@
 		--border-color: #666;
 
 		--date-color: #999;
+	}
+
+	/* Ocultar/mostrar iconos de tema con CSS en lugar de JS */
+	.light-mode,
+	html.dark .dark-mode {
+		display: none;
+	}
+
+	.dark-mode,
+	html.dark .light-mode {
+		display: block;
 	}
 
 	@media (prefers-color-scheme: dark) {
