@@ -26,6 +26,19 @@ const props = Astro.props;
 
 <Section>
 	<div class='container'>
+		<div class='avatar'>
+			<button
+				id='theme-toggle-btn'
+				class='light-dark-toggle'
+				aria-label='Cambiar entre modo claro y oscuro'
+			>
+				<Light class='light-mode' aria-hidden='true' />
+				<Dark class='dark-mode' aria-hidden='true' />
+			</button>
+			<div class='print'></div>
+			<img src={image} alt={`Foto de perfil de ${name}`} width='128' height='128' />
+		</div>
+
 		<div class='info'>
 			<h1>{name}</h1>
 			<h2>{label}</h2>
@@ -70,25 +83,14 @@ const props = Astro.props;
 				}
 			</footer>
 		</div>
-		<div class='avatar'>
-			<button
-				id='theme-toggle-btn'
-				class='light-dark-toggle'
-				aria-label='Cambiar entre modo claro y oscuro'
-			>
-				<Light class='light-mode' aria-hidden='true' />
-				<Dark class='dark-mode' aria-hidden='true' />
-			</button>
-			<div class='print'></div>
-			<img src={image} alt={`Foto de perfil de ${name}`} width='128' height='128' />
-		</div>
 	</div>
 </Section>
 
 <style>
 	.container {
 		display: flex;
-		align-items: start;
+		flex-direction: row;
+		align-items: center;
 		justify-content: space-between;
 		gap: 24px;
 	}
@@ -203,15 +205,8 @@ const props = Astro.props;
 
 	@media (width < 680px) {
 		.container {
-			flex-direction: column;
-		}
-
-		.avatar {
-			order: -1;
-		}
-
-		.avatar .light-dark-toggle {
-			order: 1;
+			flex-direction: column-reverse;
+			align-items: start;
 		}
 	}
 
